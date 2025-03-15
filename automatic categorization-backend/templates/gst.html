@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch GST Details</title>
+   <style>
+    /* Variables */
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-color: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-color: #1e293b;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+/* Headings */
+h1 {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+h2, h3 {
+  color: var(--text-color);
+  margin: 1.5rem 0;
+  font-size: 1.5rem;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"] {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Captcha Container */
+#captchaImageContainer {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+}
+
+#captchaImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+/* Result Container */
+#gstResult {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+}
+
+#gstOutput {
+  background-color: #f8fafc;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: monospace;
+  margin: 1rem 0;
+}
+
+/* Map Container */
+#map {
+  margin-top: 2rem;
+}
+
+#gmapIframe {
+  width: 100%;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+/* Back Link */
+a {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  #gmapIframe {
+    height: 300px;
+  }
+}
+   </style>
+
+    
+    <!-- Load Google Maps API asynchronously -->
+    <script src="https://www.google.com/maps/embed?apiKey=AIzaSyDJfABDdpB7fIMs_F4e1IeqKoEQ2BSNSl0" async defer></script>
+
+<body>
+    <div class="container">
+        <h1>Fetch GST Details</h1>
+        <form id="gstForm">
+            <label for="gstNumber">GST Number:</label>
+            <input type="text" id="gstNumber" name="gst_number" required>
+            <label for="captcha">Captcha:</label>
+            <input type="text" id="captcha" name="captcha" required>
+            <input type="hidden" id="captchaCookie" name="captcha_cookie">
+            <button type="submit">Fetch GST Details</button>
+        </form>
+        <div id="captchaImageContainer">
+            <h3>Captcha Image</h3>
+            <img id="captchaImage" src="" alt="Captcha Image">
+        </div>
+        <div id="gstResult">
+            <h2>GST Details</h2>
+            <pre id="gstOutput"></pre>
+            <div id="map">
+                <h3>Location on Map</h3>
+                <div id="mapCanvas" style="height: 400px; width: 100%;"></div>
+            </div>
+        </div>
+        <a href="/">Back to Home</a>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
