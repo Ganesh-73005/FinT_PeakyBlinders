@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "owner": "ganesh2908",
+    "name": "FinT",
+    "slug": "FinT",
+    "version": "1.0.0",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "android": {
+      "package": "com.ganesh2908.client",
+      "runtimeVersion": "1.0.0"
+    },
+    "icon": "./assets/logo1.jpg",
+    "splash": {
+      "backgroundColor": "#232323",
+      "image": "./assets/splash-1.png",
+      "dark": {
+        "image": "./assets/splash-1.png",
+        "backgroundColor": "#000000"
+      },
+      "imageWidth": 200
+    },
+    "plugins": [
+      "expo-font",
+      "expo-dev-client"
+    ],
+    "ios": {
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "468680e9-327a-455e-99cd-92ad4f13b9cd"
+      }
+    }
+  }
+}
